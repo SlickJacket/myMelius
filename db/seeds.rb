@@ -6,7 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-bob = User.create(name: "Bob", company_id: 1)
-amy = User.create(name: "Amy", company_id: 1)
+# User.create(name: "Bob", password: "yes", company_id: 4)
+User.create(name: "Bob", email: "bob@gmail.com", password: "yes", company_id: 1)
+User.create(name: "Amy", email: "Amy@gmail.com", password: "yes", company_id: 1)
 
-company = Company.create(name: "TraxNYC")
+Review.create(rating: 4, comment: "This is a comment", reviewer_id: 2, reviewee_id: 1)
+Review.create(rating: 4, comment: "NEW COMMENT #2!", reviewer_id: 2, reviewee_id: 1)
+
+Company.create(name: "TraxNYC")
