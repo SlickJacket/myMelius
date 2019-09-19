@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  # has_secure_password
+  has_secure_password
+  validates :email, uniqueness: { case_sensitive: false }
+
   belongs_to :company
 
   has_many :reviewed_users, foreign_key: :reviewer_id, class_name: 'Review'
