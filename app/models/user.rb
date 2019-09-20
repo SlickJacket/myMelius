@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   belongs_to :company
 
+
   has_many :reviewed_users, foreign_key: :reviewer_id, class_name: 'Review'
   has_many :reviewees, through: :reviewed_users
 
