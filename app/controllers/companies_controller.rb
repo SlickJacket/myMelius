@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
   end
 
   # GET /companies/1
-  def show
+  def profile
     render json: @company
   end
 
