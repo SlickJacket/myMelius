@@ -8,7 +8,13 @@ class UsersController < ApplicationController
   end
 
   def profile
-    render json: current_user
+    company = current_user.company
+    render json: current_user, include: [:company, :reviewees, :reviewers, :reviewing_users, :reviewed_users]
+  end
+
+  def show
+    # company = current_user.company
+    render json: @user, include: [:company, :reviewees, :reviewers, :reviewing_users, :reviewed_users]
   end
 
   def create
@@ -39,6 +45,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.permit(:name, :title, :email, :password, :company_id)
+      params.permit(:name, :title, :email, :password, :company_id, :user_rating)
     end
 end

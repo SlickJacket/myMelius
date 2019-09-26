@@ -9,8 +9,8 @@ class CompaniesController < ApplicationController
   end
 
   # GET /companies/1
-  def profile
-    render json: @company
+  def show
+    render json: @company, include: :users
   end
 
   # POST /companies

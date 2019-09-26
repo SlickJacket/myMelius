@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
 
   # POST /reviews
   def create
-    @review = Review.new(review_params)
+    @review = Review.create(review_params)
 
     if @review.save
       render json: @review, status: :created, location: @review
@@ -46,6 +46,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def review_params
-      params.require(:review).permit(:rating, :comment)
+      params.permit(:rating, :comment, :reviewer_id, :reviewee_id)
     end
 end
