@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :update, :destroy]
+  before_action :set_company, only: [:show, :update, :destroy, :ratings]
 
   # GET /companies
   def index
@@ -38,6 +38,11 @@ class CompaniesController < ApplicationController
     @company.destroy
   end
 
+  def ratings
+    render json: @company.ratings
+  end
+
+ 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company

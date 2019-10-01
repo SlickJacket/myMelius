@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy, :user_average, :datetime]
 
   def index
     @users = User.all
@@ -8,11 +8,13 @@ class UsersController < ApplicationController
   end
 
   def profile
-    company = current_user.company
+    # byebug
+    
     render json: current_user, include: [:company, :reviewees, :reviewers, :reviewing_users, :reviewed_users]
   end
 
   def show
+    # byebug
     # company = current_user.company
     render json: @user, include: [:company, :reviewees, :reviewers, :reviewing_users, :reviewed_users]
   end
@@ -38,6 +40,16 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
   end
+
+  def user_average 
+    
+    render json: @user.average
+  end
+
+def datetime
+
+  render json: @user.datetime
+end
 
   private
     def set_user

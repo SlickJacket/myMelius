@@ -18,5 +18,29 @@ class User < ApplicationRecord
   }
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+  def average 
+    total = 0
+    if self.reviewing_users.length <= 0
+      return  0
+
+else
+  self.reviewing_users.each do |review|
+    total+= review.rating     
+  end 
+      totflt = total/self.reviewing_users.length
+  return totflt.round(2)
+end
+
+end
+
+def datetime 
+  array = []
+    self.reviewing_users.map do |review|
+        @reviewer = User.find(review.reviewer_id)
+        array << {"reviewername" => @reviewer.name, "rating" => review.rating, "comment" => review.comment, "dateposted" => review.created_at.strftime("%m-%d-%Y")}
+    end
+    return array
+
+end
 
 end
