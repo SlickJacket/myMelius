@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: { case_sensitive: false }
 
   belongs_to :company
+  has_many :images
 
 
   has_many :reviewed_users, foreign_key: :reviewer_id, class_name: 'Review'

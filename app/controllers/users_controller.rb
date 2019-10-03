@@ -57,6 +57,6 @@ end
     end
 
     def user_params
-      params.permit(:name, :title, :email, :password, :company_id, :user_rating)
+      params.permit(:name, :title, :email, :password, :company_id, :user_rating, :image_url)
     end
 end

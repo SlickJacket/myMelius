@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_25_195025) do
+ActiveRecord::Schema.define(version: 2019_10_01_231243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 2019_09_25_195025) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "images", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.float "rating"
     t.string "comment"
@@ -32,6 +43,17 @@ ActiveRecord::Schema.define(version: 2019_09_25_195025) do
     t.integer "reviewee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_images", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["user_id"], name: "index_user_images_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,8 +70,12 @@ ActiveRecord::Schema.define(version: 2019_09_25_195025) do
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.string "user_rating"
+    t.string "image_url"
+    t.string "url"
     t.index ["company_id"], name: "index_users_on_company_id"
   end
 
+  add_foreign_key "images", "users"
+  add_foreign_key "user_images", "users"
   add_foreign_key "users", "companies"
 end

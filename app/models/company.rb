@@ -6,7 +6,7 @@ class Company < ApplicationRecord
         arry = []
         self.users.each do |user| 
         
-            arry << { "id" => user.id, "name" => user.name, "title" => user.title, "rating" => user.average } 
+            arry << { "id" => user.id, "name" => user.name, "title" => user.title, "rating" => user.average, "image_url" => user.image_url} 
         end
         return arry
 end
